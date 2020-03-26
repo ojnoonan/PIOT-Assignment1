@@ -1,39 +1,6 @@
 from sense_hat import SenseHat
 import json, os, time
 
-b = (0,0,255) #blue
-led_blue = [
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-    b,b,b,b,b,b,b,b,
-]
-g = (0,255,0) #green
-led_green = [
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-    g,g,g,g,g,g,g,g,
-]
-r = (255,0,0) #red
-led_red = [
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-    r,r,r,r,r,r,r,r,
-]
 sense = SenseHat()
 sense.clear()
 
@@ -78,12 +45,16 @@ def get_current_temp():
 def set_led(realTemp):
     print(realTemp)
     if realTemp <= 10:
-        sense.set_pixels(led_blue)
+        b = (0,0,255) #blue
+        sense.clear(b)
+        #sense.set_pixels(led_blue)
     elif realTemp >= 25:
-        sense.set_pixels(led_red)
+        r = (255,0,0) #red
+        sense.clear(r)
+        #sense.set_pixels(led_red)
     else:
-        green = (255,0,0)
-        sense.clear(green)
+        g = (255,0,0) #green
+        sense.clear(g)
         #sense.set_pixels(led_green) 
 
 get_file_contents()
