@@ -56,10 +56,13 @@ def get_file_contents():
 
 def get_current_temp():
     # Get SenseHat temperature
-    senseTemp = sense.get_temperature_from_humidity()
+    temp1 = sense.get_temperature_from_humidity()
+    temp2 = sense.get_temperature_from_pressure()
+    t_cpu = get_cpu_temp()
     
     # Get actual temperature
-    realTemp = get_cpu_temp() - senseTemp
+    t = (temp1+temp2)/2
+    realTemp = t - ((t_cpu-t)/1.5)
     set_led(realTemp)
 
 # Set led based on temp
@@ -70,7 +73,12 @@ def set_led(realTemp):
     elif realTemp >= 25:
         sense.set_pixels(led_red)
     else:
-        sense.set_pixels(led_green) 
+        green = (255,0,0)
+        sense.clear(green)
+        #sense.set_pixels(led_green) 
 
 get_file_contents()
-get_current_temp()
+
+while True: 
+    get_current_temp()
+    time.sleep(10)
