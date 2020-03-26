@@ -37,7 +37,15 @@ led_red = [
 sense = SenseHat()
 sense.clear()
 
-#setup loop to constatly check temps and update leds
+# use moving average to smooth readings
+def get_smooth(x):
+  if not hasattr(get_smooth, "t"):
+    get_smooth.t = [x,x,x]
+  get_smooth.t[2] = get_smooth.t[1]
+  get_smooth.t[1] = get_smooth.t[0]
+  get_smooth.t[0] = x
+  xs = (get_smooth.t[0]+get_smooth.t[1]+get_smooth.t[2])/3
+  return(xs)
 
 # Get CPU temperature
 def get_cpu_temp():
@@ -63,6 +71,7 @@ def get_current_temp():
     # Get actual temperature
     t = (temp1+temp2)/2
     realTemp = t - ((t_cpu-t)/1.5)
+    realTemp = get_smooth(realTemp)
     set_led(realTemp)
 
 # Set led based on temp
