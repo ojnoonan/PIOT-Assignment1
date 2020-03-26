@@ -44,10 +44,8 @@ def get_cpu_temp():
     res = os.popen("vcgencmd measure_temp").readline()
     return float(res.replace("temp=","").replace("'C\n",""))
 
-get_file_contents()
-
 # Get the file contents
-def get_file_contents(self):
+def get_file_contents():
     readFile = open("Task B/config.json", "r")
     contents = readFile.read()
 
@@ -55,22 +53,24 @@ def get_file_contents(self):
 
     for key, value in data.items():
         print(key, value)
-        self.value = value
-        
 
 def get_current_temp():
     # Get SenseHat temperature
     senseTemp = sense.get_temperature_from_humidity()
     
     # Get actual temperature
-    realTemp = senseTemp - get_cpu_temp()
+    realTemp = get_cpu_temp() - senseTemp
     set_led(realTemp)
 
 # Set led based on temp
 def set_led(realTemp):
+    print(realTemp)
     if realTemp <= 10:
         sense.set_pixels(led_blue)
     elif realTemp >= 25:
         sense.set_pixels(led_red)
     else:
-       sense.set_pixels(led_green) 
+        sense.set_pixels(led_green) 
+
+get_file_contents()
+get_current_temp()
