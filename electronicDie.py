@@ -1,5 +1,5 @@
 from sense_hat import SenseHat
-from time import sleep
+import time
 from random import choice
 import random
 
@@ -83,7 +83,7 @@ g,g,b,b,b,b,g,g,
 
 def roll_dice():
     r = random.randint(1,6) 
-    p= r1%6
+    p = r%6
      
     if p == 1:
         sense.set_pixels(ONE)
