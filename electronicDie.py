@@ -84,19 +84,27 @@ g,g,b,b,b,b,g,g,
 def roll_dice():
     r = random.randint(1,6) 
     p = r%6
+    n = 0
      
     if p == 1:
         sense.set_pixels(ONE)
+        n = 1
     elif p == 2:
         sense.set_pixels(TWO)
+        n = 2
     elif p == 3:
         sense.set_pixels(THREE)
+        n = 3
     elif p == 4:
         sense.set_pixels(FOUR)
+        n = 4
     elif p == 5:
         sense.set_pixels(FIVE)
+        n = 5
     elif p == 0:
         sense.set_pixels(SIX)
+        n = 6
+    return n
 
 while True:
     x, y, z = sense.get_accelerometer_raw().values()
