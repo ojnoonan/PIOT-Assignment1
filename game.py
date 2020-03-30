@@ -1,5 +1,5 @@
 from sense_hat import SenseHat
-import electronicDie as ed
+from electronicDie import roll_dice
 
 sense = SenseHat()
 sense.clear()
@@ -15,13 +15,13 @@ while p1_score < 30 and p2_score < 30:
     roll = 0 # Reset roll each time
     sense.show_message("Player " + player_turn + " Roll  ")
     if player_turn == 1:
-        roll = ed.roll_dice
+        roll = roll_dice()
         p1_score + roll
         check_player_score(p1_score)
         player_turn + 1
 
     else:
-        roll = ed.roll_dice
+        roll = roll_dice()
         p2_score + roll
         check_player_score(p2_score)
         player_turn - 1
