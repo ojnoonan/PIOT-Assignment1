@@ -26,13 +26,13 @@ def save_winner(score):
 
 def check_player_score(score):
     print(score)
-    if score >= 10:
+    if score >= 30:
         sense.show_message("Player " + str(player_turn) + " Wins  ")
         save_winner(score)
     else:
         pass
 
-while p1_score < 10 and p2_score < 10:
+while p1_score < 30 and p2_score < 30:
     roll = 0 # Reset roll each time
     if player_turn == 1:
         sense.show_message("Player " + str(player_turn))
