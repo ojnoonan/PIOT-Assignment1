@@ -1,5 +1,5 @@
 from sense_hat import SenseHat
-from electronicDie import roll_dice
+from electronicDie import check_for_movement
 import csv, time
 
 sense = SenseHat()
@@ -21,27 +21,29 @@ def save_winner(score):
         t = time.localtime() # Get current time
         current_time = time.strftime("%H:%M:%S", t) # Format time
 
-        writer.writerow(score + current_time)
+        writer.writerow(current_time + " " + str(score))
 
 
 def check_player_score(score):
-    if score == 30:
-        sense.show_message("Player " + player_turn + " Wins  ")
+    print(score)
+    if score >= 10:
+        sense.show_message("Player " + str(player_turn) + " Wins  ")
+        save_winner(score)
     else:
         pass
 
-while p1_score < 30 and p2_score < 30:
+while p1_score < 10 and p2_score < 10:
     roll = 0 # Reset roll each time
-    sense.show_message("Player " + str(player_turn) + " Roll  ")
     if player_turn == 1:
-        roll = roll_dice()
-        p1_score + roll
+        sense.show_message("Player " + str(player_turn))
+        roll = check_for_movement(True)
+        p1_score += roll
         check_player_score(p1_score)
-        player_turn + 1
+        player_turn += 1
 
     else:
-        roll = roll_dice()
-        p2_score + roll
+        sense.show_message("Player " + str(player_turn))
+        roll = check_for_movement(True)
+        p2_score += roll
         check_player_score(p2_score)
-        player_turn - 1
-        
+        player_turn -= 1
