@@ -32,7 +32,7 @@ def check_player_score(score):
 
 while p1_score < 30 and p2_score < 30:
     roll = 0 # Reset roll each time
-    sense.show_message("Player " + player_turn + " Roll  ")
+    sense.show_message("Player " + str(player_turn) + " Roll  ")
     if player_turn == 1:
         roll = roll_dice()
         p1_score + roll
