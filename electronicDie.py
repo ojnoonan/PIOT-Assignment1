@@ -7,6 +7,7 @@ sense = SenseHat()
 
 sense.clear()
 
+loop_break = False
 
 b = (0, 0, 0)
 g = (0, 255, 0)
@@ -104,7 +105,7 @@ def roll_dice():
         sense.set_pixels(SIX)
         n = 6
     return n
-def check_for_movement():
+def check_for_movement(loop_break):
     sense.show_message("Shake  ")
     while True:
         x, y, z = sense.get_accelerometer_raw().values()
@@ -114,9 +115,12 @@ def check_for_movement():
         z = abs(z)
 
         if x > 1.5 or y > 1.5 or z > 1.5:
-            roll_dice() 
+            roll = roll_dice() 
             time.sleep(1)
+            if loop_break is True:
+                return roll
+                break
 
 if __name__ == "__main__":
-    check_for_movement()
+    check_for_movement(loop_break)
     roll_dice()
