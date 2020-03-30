@@ -7,8 +7,6 @@ sense = SenseHat()
 
 sense.clear()
 
-sense.show_message("Shake  ")
-
 
 b = (0, 0, 0)
 g = (0, 255, 0)
@@ -106,14 +104,19 @@ def roll_dice():
         sense.set_pixels(SIX)
         n = 6
     return n
+def check_for_movement():
+    sense.show_message("Shake  ")
+    while True:
+        x, y, z = sense.get_accelerometer_raw().values()
 
-while True:
-    x, y, z = sense.get_accelerometer_raw().values()
+        x = abs(x)
+        y = abs(y)
+        z = abs(z)
 
-    x = abs(x)
-    y = abs(y)
-    z = abs(z)
+        if x > 1.5 or y > 1.5 or z > 1.5:
+            roll_dice() 
+            time.sleep(1)
 
-    if x > 1.5 or y > 1.5 or z > 1.5:
-        roll_dice() 
-        time.sleep(1)
+if __name__ == "__main__":
+    check_for_movement()
+    roll_dice()
