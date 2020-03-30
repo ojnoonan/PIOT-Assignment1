@@ -9,8 +9,6 @@ sense.clear()
 
 sense.show_message("Shake  ")
 
-if __name__ == '__main__':
-    roll_dice()
 
 b = (0, 0, 0)
 g = (0, 255, 0)
