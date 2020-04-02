@@ -1,5 +1,5 @@
 from sense_hat import SenseHat
-from electronicDie import check_for_movement
+from electronicDie import emoJ
 import csv, time
 
 sense = SenseHat()
@@ -33,19 +33,19 @@ def check_player_score(score):
         pass
 
 while p1_score < 30 and p2_score < 30:
-    die=emoJ() 
-
+    die = emoJ()
     roll = 0 # Reset roll each time
     if player_turn == 1:
         sense.show_message("Player " + str(player_turn))
         roll = die.check_for_movement(True)
-        p1_score += die.roll
+        p1_score += roll
         check_player_score(p1_score)
         player_turn += 1
 
     else:
         sense.show_message("Player " + str(player_turn))
         roll = die.check_for_movement(True)
-        p2_score += die.roll
+        p2_score += roll
         check_player_score(p2_score)
         player_turn -= 1
+
