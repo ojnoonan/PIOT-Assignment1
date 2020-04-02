@@ -23,15 +23,19 @@ def get_cpu_temp():
 
 # Get the file contents
 def get_file_contents():
-    readFile = open("config.json", "r")
-    contents = readFile.read()
+    try:
+        readFile = open("config.json", "r")
+        contents = readFile.read()
 
-    data = json.loads(contents)
+        data = json.loads(contents)
     
-    file_contents.clear() #clear the array for existing data
-    for key, value in data.items():
-        file_contents.append(value) #storing updated file contents
-        
+        file_contents.clear() #clear the array for existing data
+        for value in data.items():
+            file_contents.append(value) #storing updated file contents
+    except OSError as e:
+        print("File not found")
+        print(e)
+
 def get_current_temp():
     # Get SenseHat temperature
     temp1 = sense.get_temperature_from_humidity()
@@ -42,23 +46,23 @@ def get_current_temp():
     t = (temp1+temp2)/2
     realTemp = t - ((t_cpu-t)/1.5)
     realTemp = get_smooth(realTemp)
-    set_led(realTemp)
+    # set_led(realTemp)
+    return realTemp
 
 # Set led based on temp
-def set_led(realTemp):
-    print(realTemp)
+def set_led():
+    colour = (255,255,255)
+    realTemp = get_current_temp()
     if realTemp <= file_contents[0]:
-        b = (0,0,255) #blue
-        sense.clear(b)
-        #sense.set_pixels(led_blue)
+        colour = (0,0,255) #blue
+        # sense.clear(b)
     elif realTemp >= file_contents[3]:
-        r = (255,0,0) #red
-        sense.clear(r)
-        #sense.set_pixels(led_red)
+        colour = (255,0,0) #red
+        # sense.clear(r)
     else:
-        g = (255,0,0) #green
-        sense.clear(g)
-        #sense.set_pixels(led_green) 
+        colour = (255,0,0) #green
+        # sense.clear(g)
+    sense.show_message(round(realTemp), text_colour=colour)
 
 while True:
     get_file_contents()
