@@ -4,7 +4,7 @@ import json, os, time
 sense = SenseHat()
 sense.clear()
 
-file_contents = [] #storing the current file contents
+file_contents = [4] #storing the current file contents
 
 # use moving average to smooth readings
 def get_smooth(x):
@@ -24,14 +24,18 @@ def get_cpu_temp():
 # Get the file contents
 def get_file_contents():
     try:
-        readFile = open("config.json", "r")
-        contents = readFile.read()
+        with open("DATAFILE.json") as f:
+            data = json.load(f)
 
-        data = json.loads(contents)
+
+         
     
-        file_contents.clear() #clear the array for existing data
-        for value in data.items():
-            file_contents.append(value) #storing updated file contents
+        # file_contents.clear() #clear the array for existing data
+        data["cold_max"]=file_contents[0]
+        data["comfortable_min"]=file_contents[1]
+        data["comfortable_max"]=file_contents[2]
+        data["hot_min"]=file_contents[3]
+          #storing updated file contents
     except OSError as e:
         print("File not found")
         print(e)
