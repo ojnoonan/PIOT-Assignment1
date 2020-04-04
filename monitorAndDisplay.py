@@ -64,7 +64,7 @@ def set_led():
         colour = (255,0,0) #red
     else:
         colour = (255,255,255) #green
-    sense.show_message(str(realTemp), text_colour=colour)
+    sense.show_message(str(realTemp), text_colour=colour, scroll_speed=0.3)
 
 while True:
     get_file_contents()
