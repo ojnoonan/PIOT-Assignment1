@@ -6,14 +6,14 @@ import random
 sense = SenseHat()
   
 sense.clear()
-loop_break = False
-  
-b = (0, 0, 0)
-g = (0, 255, 0)
-r = (255, 0, 0)
-p = (255,105, 180)
-B =(0, 0, 255)
-  
+loop_break = False 
+b = (0, 0, 0) #black
+g = (0, 255, 0) #green
+r = (255, 0, 0) #red
+p = (255,105, 180) #pink
+B =(0, 0, 255) #blue
+
+# Die number one
 ONE = [
   b,b,b,b,b,b,b,b,
   b,b,b,b,b,b,b,b,
@@ -24,7 +24,7 @@ ONE = [
   b,b,b,b,b,b,b,b,
   b,b,b,b,b,b,b,b,
   ]
-  
+# Die number two
 TWO = [
   b,b,b,b,b,b,b,b,
   b,p,p,p,b,b,b,b,
@@ -35,7 +35,7 @@ TWO = [
   b,b,b,b,p,p,p,b,
   b,b,b,b,b,b,b,b,
   ]
-  
+# Die number three
 THREE = [
   g,g,b,b,b,b,b,b,
   g,g,b,b,b,b,b,b,
@@ -46,7 +46,7 @@ THREE = [
   b,b,b,b,b,b,g,g,
   b,b,b,b,b,b,g,g,
   ]
-  
+# Die number four
 FOUR = [
   b,b,b,b,b,b,b,b,
   b,B,B,b,b,B,B,b,
@@ -57,7 +57,7 @@ FOUR = [
   b,B,B,b,b,B,B,b,
   b,b,b,b,b,b,b,b,
   ]
-  
+# Die number five 
 FIVE = [
   r,r,b,b,b,b,r,r,
   r,r,b,b,b,b,r,r,
@@ -68,7 +68,7 @@ FIVE = [
   r,r,b,b,b,b,r,r,
   r,r,b,b,b,b,r,r,
   ]
-  
+# Die number six 
 SIX = [
   g,g,b,b,b,b,g,g,
   g,g,b,b,b,b,g,g,
@@ -83,7 +83,7 @@ class emoJ:
     
     def __init__(self, loop_break):
         self.loop_break = loop_break
-  
+   # This method picks a random number between 1-6
     def roll_dice(self):
       r = random.randint(1,6) 
       p = r%6
@@ -108,7 +108,7 @@ class emoJ:
           sense.set_pixels(SIX)
           n = 6
       return n
-
+    #Check's for movement
     def check_for_movement(self):
       sense.show_message("Shake  ", scroll_speed=0.05)
       while True:

@@ -4,13 +4,13 @@ import time
 s = SenseHat()
 s.low_light = True
 
-G = (0, 255, 0)
-Y = (255, 255, 0)
-B = (0, 0, 255)
-R = (255, 0, 0)
-W = (255,255,255)
-P = (255,105, 180)
-
+G = (0, 255, 0) #green
+Y = (255, 255, 0) #yellow
+B = (0, 0, 255) #blue
+R = (255, 0, 0) #red
+W = (255,255,255) #white
+P = (255,105, 180) #pink
+#Smiley Face emoji
 def smileyFace():
     
     Smface = [
@@ -24,7 +24,7 @@ def smileyFace():
     Y, Y, Y, Y, Y, Y, Y, Y,
     ]
     return Smface
-
+#Sad Face emoji
 def  sadFace():
    
     Sface = [
@@ -39,7 +39,7 @@ def  sadFace():
     ]
     return Sface
  
-
+#Funny face emoji
 def funnyFace():
     
     Fface = [
@@ -53,7 +53,7 @@ def funnyFace():
     Y, Y, Y, Y, R, R, R, Y,
     ]
     return  Fface
-
+#Array of faces
 FACES = [smileyFace,sadFace,funnyFace]
 count = 0
 
