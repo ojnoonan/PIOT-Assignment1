@@ -4,7 +4,7 @@ import json, os, time
 sense = SenseHat()
 sense.clear()
 
-file_contents = [4] #storing the current file contents
+file_contents = [0] * 4 #storing the current file contents
 
 # use moving average to smooth readings
 def get_smooth(x):
@@ -24,12 +24,9 @@ def get_cpu_temp():
 # Get the file contents
 def get_file_contents():
     try:
-        with open("DATAFILE.json") as f:
+        with open("config.json") as f:
             data = json.load(f)
-
-
-         
-    
+            
         # file_contents.clear() #clear the array for existing data
         data["cold_max"]=file_contents[0]
         data["comfortable_min"]=file_contents[1]
@@ -57,16 +54,17 @@ def get_current_temp():
 def set_led():
     colour = (255,255,255)
     realTemp = round(get_current_temp())
-    if realTemp <= file_contents[0]:
+    if realTemp < file_contents[0]: # cold_max
         colour = (0,0,255) #blue
-        # sense.clear(b)
-    elif realTemp >= file_contents[3]:
+    elif realTemp > file_contents[1]: # comfortable_min
+        colour = (0,255,0) #green
+    elif realTemp < file_contents[2]: #comfortable_max
+        colour = (0,255,0) #green
+    elif realTemp > file_contents[3]: #hot_min
         colour = (255,0,0) #red
-        # sense.clear(r)
     else:
-        colour = (255,0,0) #green
-        # sense.clear(g)
-    sense.show_message(realTemp, text_colour=colour)
+        colour = (255,255,255) #green
+    sense.show_message(str(realTemp), text_colour=colour)
 
 while True:
     get_file_contents()
