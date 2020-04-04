@@ -80,8 +80,11 @@ SIX = [
   g,g,b,b,b,b,g,g,
   ]
 class emoJ:
+    
+    def __init__(self, loop_break):
+        self.loop_break = loop_break
   
-    def roll_dice(s):
+    def roll_dice(self):
       r = random.randint(1,6) 
       p = r%6
       n = 0
@@ -106,8 +109,8 @@ class emoJ:
           n = 6
       return n
 
-    def check_for_movement(loop_break, s):
-      sense.show_message("Shake  ")
+    def check_for_movement(self):
+      sense.show_message("Shake  ", scroll_speed=0.05)
       while True:
           x, y, z = sense.get_accelerometer_raw().values()
 
@@ -118,11 +121,13 @@ class emoJ:
           if x > 1.5 or y > 1.5 or z > 1.5:
               roll = dice.roll_dice() 
               time.sleep(1)
-              if loop_break is True:
+              if self.loop_break is True:
                   return roll
                   break
-dice = emoJ()
+
+dice = emoJ(loop_break)
 if __name__ == "__main__":
-    dice.check_for_movement(loop_break)
+    dice.check_for_movement()
     dice.roll_dice()
+
 
