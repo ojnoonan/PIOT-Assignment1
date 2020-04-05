@@ -128,6 +128,3 @@ class emoJ:
 dice = emoJ(loop_break)
 if __name__ == "__main__":
     dice.check_for_movement()
-    dice.roll_dice()
-
-
