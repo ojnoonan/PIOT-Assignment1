@@ -28,13 +28,13 @@ class diceGame:
 
     def check_player_score(score, player_turn):
         print(str(score))
-        if score >= 10:
+        if score >= 30:
             sense.show_message("Player " + str(player_turn) + " Wins  ")
             save_winner(score)
         else:
             pass
 
-    while p1_score < 10 and p2_score < 10:
+    while p1_score < 30 and p2_score < 30:
         print(player_turn)
         die = emoJ(True)
         roll = 0 # Reset roll each time
