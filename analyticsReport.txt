@@ -1,6 +1,28 @@
 # PIOT-Assignment1
 Programming Internet of Things Assignment 1 - Sense Hat
 
+animatedEmoji.py
+   The program has predifined colours for the emoji's.
+   The FACES array stores all of the faces that will be displayed.
+   In the while loop , we peek each time a diffrent emoji to be siplayed every 3s.
+   Functions In Program:
+	-smileyFace(),sadFace(),funnyFace()
+	   Stores in the colours of each emoji that should be displayed and returns the face that will be displayed.
+         
+   	
+
+
+electronicDie.py
+   The program has prefined colours for the die's.
+   We store the sequence of colours of each one .
+   Class in the Program:
+	Methods of the class:
+ 	  -roll_dice():
+		This method picks a random number between 1-6 and depending on the the mod with 6 , displays a diffrent die.
+          -check_for_movement():
+  		This method displays a message "Shake".Then uses accelerometer in order to check if there is a shake. If there is one it calls the method roll_dice and displays a die.
+   In the main we are checking for movement and we call the roll.dice method.
+
 monitorAndDisplay.py
   The program stores the contents of the config.json into an array. 
   Functions In Program:
@@ -15,7 +37,9 @@ monitorAndDisplay.py
     - set_led()
         calls the get_current_temp() method and uses the returned result to run through an if statement. This will check if           the temprature meets the conditions mentioned in the file. It then displys the temprature in a scrolling text form             with the numbers colored based on the temprature.
 game.py
-  
+
+
+
 
 
 Link to Git: https://github.com/s3660457/PIOT-Assignment1.git
