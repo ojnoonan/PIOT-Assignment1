@@ -8,9 +8,6 @@ animatedEmoji.py
    Functions In Program:
 	-smileyFace(),sadFace(),funnyFace()
 	   Stores in the colours of each emoji that should be displayed and returns the face that will be displayed.
-         
-   	
-
 
 electronicDie.py
    The program has prefined colours for the die's.
@@ -25,7 +22,7 @@ electronicDie.py
 
 monitorAndDisplay.py
   The program stores the contents of the config.json into an array. 
-  Functions In Program:
+  Functions in Program:
     - get_smooth()
         uses moving average to smooth readings given by the sense hat
     - get_cpu_temp()
@@ -36,10 +33,21 @@ monitorAndDisplay.py
         gets the current temprature recoreded by the pi using the humidity and pressure sensors. It also takes into account           the temprature of the CPU
     - set_led()
         calls the get_current_temp() method and uses the returned result to run through an if statement. This will check if           the temprature meets the conditions mentioned in the file. It then displys the temprature in a scrolling text form             with the numbers colored based on the temprature.
+
 game.py
+   The main class daceGame contains one function and a while loop
+   There is also a function outside the class which saves the winning players score to the file
+   Functions in Program:
+     - check_player_score()
+     	each time a player rolls the die this function is called to check if the player has reached 	    the required score. If the player has met the required score it will send the players score to 	   save_winner()
+     - save_winner()
+        this function appends the winning players score to the file along with the current time. The 	     time is formatted using H:M:S
+     - while loop
+        the loop has a condition based on each players score and when met will break. Each cycle a 	   player will be displayed a message to roll then their roll will be added to their score. The 	player_turn variable will keep track of which players turn it is.
 
 
 
-
-
+By:
+Oliver N, s3660457
+Mike L, s3787260
 Link to Git: https://github.com/s3660457/PIOT-Assignment1.git
